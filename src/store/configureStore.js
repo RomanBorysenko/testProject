@@ -5,11 +5,11 @@ import testApp from '../reducers/index';
 import thunk from 'redux-thunk';
 import { apiMiddleware } from 'redux-api-middleware';
 
-const createStoreWithMiddleware =
+const createStoreWithMiddleware = compose(
     applyMiddleware(
         apiMiddleware
-    )(createStore);
+    ))(createStore);
 
-export default function configureStore() {
-    return createStoreWithMiddleware(testApp);
+export default function configureStore(initialState) {
+    return createStoreWithMiddleware(testApp, initialState);
 }

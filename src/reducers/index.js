@@ -4,8 +4,7 @@ import Immutable from 'immutable';
 import dataReducer from './data.reducer';
 
 const testApp = combineReducers({
-    dataReducer,
-    routeReducer
+    dataReducer: dataReducer
 });
 
 export default testApp;
