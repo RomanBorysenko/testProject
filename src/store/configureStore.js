@@ -7,7 +7,8 @@ import { apiMiddleware } from 'redux-api-middleware';
 
 const createStoreWithMiddleware = compose(
     applyMiddleware(
-        apiMiddleware
+        apiMiddleware,
+        thunk
     ))(createStore);
 
 export default function configureStore(initialState) {

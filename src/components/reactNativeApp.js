@@ -10,7 +10,7 @@ class ReactNativeApp extends Component {
     }
 
     componentWillMount() {
-        getData('test');
+        this.props.getData('test');
     }
 
     render() {
