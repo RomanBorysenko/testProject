@@ -1,32 +1,33 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getData } from '../actions/data.action';
+import {View, Navigator} from 'react-native';
+import Auth from '../components/Auth';
+import SignIn from '../components/SignIn';
 
 class ReactNativeApp extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentWillMount() {
-        this.props.getData('test');
-    }
+    renderScene = (route, navigator) => {
+        if(route.name == 'signIn') {
+            return <SignIn navigator={navigator} />
+        }
+        if(route.name == 'registration') {
+            return <Auth navigator={navigator} />
+        }
+        if(route.name == 'dashBoard') {
+            return <DashBoard navigator={navigator} />
+        }
+    };
 
     render() {
         return (
-            <View>
-                <Text>{'Test'}</Text>
-            </View>
-        );
+            <Navigator
+                style={{ flex:1 }}
+                initialRoute={{ name: 'signIn' }}
+                renderScene={ this.renderScene } />
+        )
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        getData: bindActionCreators(getData, dispatch)
-    }
-}
-
-export default connect(store => ({
-}), mapDispatchToProps)(ReactNativeApp);
+export default ReactNativeApp;
