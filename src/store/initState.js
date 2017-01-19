@@ -1,5 +1,6 @@
 import Immutable from 'immutable';
 
 export const defaultInitState = {
-    data: Immutable.Map()
+    data: Immutable.Map(),
+    router: Immutable.Map()
 };

@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import { routeReducer } from 'redux-simple-router';
-import Immutable from 'immutable';
 import dataReducer from './data.reducer';
+import authReducer from './auth.reducer';
 
-export { dataReducer };
-
-const testApp = combineReducers({
-    data: dataReducer
+const rootReducer = combineReducers({
+    data: dataReducer,
+    router: authReducer
 });
 
-export default testApp;
+export default rootReducer;

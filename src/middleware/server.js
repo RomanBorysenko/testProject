@@ -7,7 +7,7 @@ export default store => next => action => {
            if (regData.login == value.phoneNumber && regData.password === value.password) {
                action.res = {
                    status: 'OK',
-                   target: 'dashboard'};
+                   target: 'dashBoard'};
            }
         }
 
@@ -18,7 +18,12 @@ export default store => next => action => {
 
         return next(action);
     }
-    else {
+    if (action.type === 'SAVE_USER') {
+        action.res =  {
+            status: 'OK',
+            target: 'dashBoard'
+        };
         return next(action);
     }
+
 }

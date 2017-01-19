@@ -20,30 +20,18 @@ class SignIn extends Component {
         };
     }
 
-    componentDidMount() {
-        const { navigator, router } = this.props;
-        console.log(router);
-    }
-
     componentWillReceiveProps(nextProps) {
-        const { navigator } = this.props;
         const { router } = nextProps;
-        console.log(navigator);
         if (router !== this.props.router) {
-            console.log(router);
-            console.log(this.props.router);
-
-            this._navigate();
+            this._navigate(router);
         }
     }
 
-    _navigate = (route) => {
-        const { navigator } = this.props;
-        console.log('yo yo');
-        navigator.push({
-            name: 'registration', // Matches route.name
+    _navigate = (router) => {
+        this.props.navigator.push({
+            name: router.get('router') // Matches route.name
         })
-    }
+    };
 
     login = () => {
         const { login, password } = this.state;
@@ -51,6 +39,7 @@ class SignIn extends Component {
     };
 
     render() {
+        //const { router } = this.props;
         const styles = StyleSheet.create({
             container: {
                 flex: 1,
