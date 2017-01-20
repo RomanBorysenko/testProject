@@ -23,30 +23,34 @@ class DashBoard extends Component {
         const styles = StyleSheet.create({
             container: {
                 flex: 1,
-                justifyContent: 'space-between',
                 alignItems: 'center',
                 backgroundColor: 'transparent'
             },
-            button: {
+            bottom: {
                 margin: 20
             }
         });
 
         return (
-                <View sstyle={styles.container}>
-                    <Button
-                        style={styles.button}
-                        onPress={()=>this._navigate('addCard')}
-                        title="Add Card"
-                    />
-                    <Button
-                        onPress={()=>this._navigate('myCards')}
-                        title="My Cards"
-                    />
-                    <Button
-                        onPress={()=>this._navigate('sendMoney')}
-                        title="Send Money"
-                    />
+                <View style={styles.container}>
+                    <View style={styles.bottom}>
+                        <Button
+                            onPress={()=>this._navigate('addCard')}
+                            title="Add Card"
+                        />
+                    </View>
+                    <View style={styles.bottom}>
+                        <Button
+                            onPress={()=>this._navigate('myCards')}
+                            title="My Cards"
+                        />
+                    </View>
+                    <View style={styles.bottom}>
+                        <Button
+                            onPress={()=>this._navigate('sendMoney')}
+                            title="Send Money"
+                        />
+                    </View>
                 </View>
 
         );

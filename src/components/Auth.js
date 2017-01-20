@@ -7,12 +7,14 @@ import {
     TextInput,
     DatePickerAndroid,
     StyleSheet,
-    Switch
+    Switch,
+    TouchableWithoutFeedback
 } from 'react-native';
 import CheckBox from 'react-native-checkbox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { saveUser } from '../actions/auth.action';
+import ToolBar from '../components/ToolBar';
 
 class Auth extends Component {
     constructor(props) {
@@ -21,7 +23,7 @@ class Auth extends Component {
         this.state = {
             presetDate: new Date(2020, 4, 5),
             allDate: new Date(2020, 4, 5),
-            date: '',
+            date: 'enter date',
             isChecked: false,
             firstName: '',
             lastName: '',
@@ -79,7 +81,7 @@ class Auth extends Component {
         const { isChecked, emailError, firstName, lastName } = this.state;
         const styles = StyleSheet.create({
             container: {
-                flex: 1,
+                //flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: 'transparent',
@@ -103,8 +105,9 @@ class Auth extends Component {
                 textAlign: 'center'
             },
             topText: {
-                fontSize: 18,
-                color: 'gray'
+                fontSize: 28,
+                color: 'black',
+                marginBottom: 30
             },
             errorText: {
                 color: 'red'
@@ -113,47 +116,51 @@ class Auth extends Component {
 
 
         return (
-            <View style={styles.container}>
-                <Text style={styles.topText}>{'Date'}</Text>
-                <TextInput
-                    style={styles.dateInput}
-                    placeholder="enter date"
-                    onFocus={this.showPicker}
-                    value={this.state.date}
-                />
-                <Text style={styles.topText}>{'First name'}</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(firstName) => this.setState({firstName: firstName})}
-                    placeholder="enter name"
-                    value={firstName}
-                />
-                <Text style={styles.topText}>{'Last name'}</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(lastName) => this.setState({lastName: lastName})}
-                    placeholder="enter last name"
-                    value={lastName}
-                />
-                {emailError ? <Text style={styles.errorText}>{'Please enter a valid email…'}</Text> : null}
-                <TextInput
-                    keyboardType="email-address"
-                    style={styles.input}
-                    onChangeText={(email) => this.setState({email: email})}
-                    placeholder="enter email-address"
-                    value={this.state.email}
-                />
-                <CheckBox
-                    label="I agree"
-                    size={30}
-                    checked={isChecked}
-                    onChange={this.handlePressCheckedBox}
-                />
-                <Button
-                    onPress={this.saveUser}
-                    title="Save"
-                    style={styles.button}
-                />
+            <View>
+                <ToolBar />
+                <View style={styles.container}>
+                    <Text style={styles.topText}>Registration</Text>
+                    <Text >{'Date'}</Text>
+                    <View style={{borderColor: 'gray', borderWidth: 1, borderRadius:10}}>
+                        <TouchableWithoutFeedback
+                            onPress={this.showPicker}>
+                            <Text style={{height:35, paddingTop:5}}>{this.state.date}</Text>
+                        </TouchableWithoutFeedback>
+                    </View>
+                    <Text >{'First name'}</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(firstName) => this.setState({firstName: firstName})}
+                        placeholder="enter name"
+                        value={firstName}
+                    />
+                    <Text >{'Last name'}</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(lastName) => this.setState({lastName: lastName})}
+                        placeholder="enter last name"
+                        value={lastName}
+                    />
+                    {emailError ? <Text style={styles.errorText}>{'Please enter a valid email…'}</Text> : null}
+                    <TextInput
+                        keyboardType="email-address"
+                        style={styles.input}
+                        onChangeText={(email) => this.setState({email: email})}
+                        placeholder="enter email-address"
+                        value={this.state.email}
+                    />
+                    <CheckBox
+                        label="I agree"
+                        size={30}
+                        checked={isChecked}
+                        onChange={this.handlePressCheckedBox}
+                    />
+                    <Button
+                        onPress={this.saveUser}
+                        title="Save"
+                        style={styles.button}
+                    />
+                </View>
             </View>
         );
     }

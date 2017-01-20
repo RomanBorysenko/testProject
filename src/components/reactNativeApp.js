@@ -4,6 +4,7 @@ import Auth from '../components/Auth';
 import SignIn from '../components/SignIn';
 import DashBoard from '../components/DashBoard';
 import AddCard from '../components/AddCard';
+import Cards from '../components/Cards';
 
 class ReactNativeApp extends Component {
     constructor(props) {
@@ -23,13 +24,16 @@ class ReactNativeApp extends Component {
         if(route.name == 'addCard') {
             return <AddCard navigator={navigator} />
         }
+        if(route.name == 'myCards') {
+            return <Cards navigator={navigator} />
+        }
     };
 
     render() {
         return (
             <Navigator
                 style={{ flex:1 }}
-                initialRoute={{ name: 'dashBoard' }}
+                initialRoute={{ name: 'registration' }}
                 renderScene={ this.renderScene } />
         )
     }

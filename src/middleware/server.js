@@ -25,5 +25,16 @@ export default store => next => action => {
         };
         return next(action);
     }
-
+    if (action.type === 'ADD_CARD') {
+        action.res =  {
+            status: 'OK',
+            target: 'dashBoard'
+        };
+        return next(action);
+    }
+    if (action.type === 'GET_CARDS') {
+        let cards = require('../static/cards.json');
+            action.res = cards;
+        return next(action);
+    }
 }
